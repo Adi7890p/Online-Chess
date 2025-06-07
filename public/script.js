@@ -5270,44 +5270,36 @@ async function bxevents(idx, ls, eve) {
 
 
 
-
-window.boardHandlers = {};
-
-function isSocketReady() {
-  return window.sendMove && typeof window.sendMove === "function";
-}
+// script.js
 
 window.boardHandlers = {};
 
 function setupBoardHandlers() {
-  const letters = ['a','b','c','d','e','f','g','h'];
-  const numbers = ['1','2','3','4','5','6','7','8'];
+  const files = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+  const ranks = ['1', '2', '3', '4', '5', '6', '7', '8'];
 
-  for (const l of letters) {
-    for (const n of numbers) {
-      const square = l + n;
-      const cell = document.getElementById(square);
-      const cellL = document.getElementById(square + 'l');
-      const cellE = document.getElementById(square + 'e');
+  for (const file of files) {
+    for (const rank of ranks) {
+      const id = file + rank;
+      const cell = document.getElementById(id);
 
-      if (!cell || !cellE) continue;
+      if (!cell) continue;
 
       const handler = () => {
-        if (typeof sendMove === 'function') {
-          sendMove(square + 'e');
-        }
-        bxevents(cell, cellL, cellE); // Your custom click effect
+        // You may replace this with your own move logic
+        console.log("Clicked:", id);
+        sendMove(id); // Send the move to the server
       };
 
-      // Attach click
-      cellE.onclick = handler;
-
-      // Register for remote click
-      window.boardHandlers[square + 'e'] = handler;
+      cell.onclick = handler;
+      window.boardHandlers[id] = handler; // Used by connection.js for remote triggering
     }
   }
 }
 
-document.addEventListener("DOMContentLoaded", setupBoardHandlers);
+document.addEventListener("DOMContentLoaded", () => {
+  setupBoardHandlers();
+});
+
 
 

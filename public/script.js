@@ -5267,211 +5267,86 @@ async function bxevents(idx, ls, eve) {
     pinning();
     checkmate();
 
+}window.boardHandlers = {};
+
+function registerSquareHandler(id, piece, label, button) {
+  button.onclick = () => {
+    if (typeof sendMove === 'function') sendMove(id);
+    bxevents(piece, label, button);
+  };
+  window.boardHandlers[id] = () => bxevents(piece, label, button);
 }
-window.boardHandlers = {};
 
-a1e.onclick = () => { sendMove("a1e"); bxevents(a1, a1l, a1e); };
-window.boardHandlers["a1e"] = () => bxevents(a1, a1l, a1e);
+// Example for rows A–H, columns 1–8
+registerSquareHandler("a1e", a1, a1l, a1e);
+registerSquareHandler("a2e", a2, a2l, a2e);
+registerSquareHandler("a3e", a3, a3l, a3e);
+registerSquareHandler("a4e", a4, a4l, a4e);
+registerSquareHandler("a5e", a5, a5l, a5e);
+registerSquareHandler("a6e", a6, a6l, a6e);
+registerSquareHandler("a7e", a7, a7l, a7e);
+registerSquareHandler("a8e", a8, a8l, a8e);
+
+registerSquareHandler("b1e", b1, b1l, b1e);
+registerSquareHandler("b2e", b2, b2l, b2e);
+registerSquareHandler("b3e", b3, b3l, b3e);
+registerSquareHandler("b4e", b4, b4l, b4e);
+registerSquareHandler("b5e", b5, b5l, b5e);
+registerSquareHandler("b6e", b6, b6l, b6e);
+registerSquareHandler("b7e", b7, b7l, b7e);
+registerSquareHandler("b8e", b8, b8l, b8e);
+
+registerSquareHandler("c1e", c1, c1l, c1e);
+registerSquareHandler("c2e", c2, c2l, c2e);
+registerSquareHandler("c3e", c3, c3l, c3e);
+registerSquareHandler("c4e", c4, c4l, c4e);
+registerSquareHandler("c5e", c5, c5l, c5e);
+registerSquareHandler("c6e", c6, c6l, c6e);
+registerSquareHandler("c7e", c7, c7l, c7e);
+registerSquareHandler("c8e", c8, c8l, c8e);
+
+registerSquareHandler("d1e", d1, d1l, d1e);
+registerSquareHandler("d2e", d2, d2l, d2e);
+registerSquareHandler("d3e", d3, d3l, d3e);
+registerSquareHandler("d4e", d4, d4l, d4e);
+registerSquareHandler("d5e", d5, d5l, d5e);
+registerSquareHandler("d6e", d6, d6l, d6e);
+registerSquareHandler("d7e", d7, d7l, d7e);
+registerSquareHandler("d8e", d8, d8l, d8e);
+
+registerSquareHandler("e1e", e1, e1l, e1e);
+registerSquareHandler("e2e", e2, e2l, e2e);
+registerSquareHandler("e3e", e3, e3l, e3e);
+registerSquareHandler("e4e", e4, e4l, e4e);
+registerSquareHandler("e5e", e5, e5l, e5e);
+registerSquareHandler("e6e", e6, e6l, e6e);
+registerSquareHandler("e7e", e7, e7l, e7e);
+registerSquareHandler("e8e", e8, e8l, e8e);
+
+registerSquareHandler("f1e", f1, f1l, f1e);
+registerSquareHandler("f2e", f2, f2l, f2e);
+registerSquareHandler("f3e", f3, f3l, f3e);
+registerSquareHandler("f4e", f4, f4l, f4e);
+registerSquareHandler("f5e", f5, f5l, f5e);
+registerSquareHandler("f6e", f6, f6l, f6e);
+registerSquareHandler("f7e", f7, f7l, f7e);
+registerSquareHandler("f8e", f8, f8l, f8e);
+
+registerSquareHandler("g1e", g1, g1l, g1e);
+registerSquareHandler("g2e", g2, g2l, g2e);
+registerSquareHandler("g3e", g3, g3l, g3e);
+registerSquareHandler("g4e", g4, g4l, g4e);
+registerSquareHandler("g5e", g5, g5l, g5e);
+registerSquareHandler("g6e", g6, g6l, g6e);
+registerSquareHandler("g7e", g7, g7l, g7e);
+registerSquareHandler("g8e", g8, g8l, g8e);
+
+registerSquareHandler("h1e", h1, h1l, h1e);
+registerSquareHandler("h2e", h2, h2l, h2e);
+registerSquareHandler("h3e", h3, h3l, h3e);
+registerSquareHandler("h4e", h4, h4l, h4e);
+registerSquareHandler("h5e", h5, h5l, h5e);
+registerSquareHandler("h6e", h6, h6l, h6e);
+registerSquareHandler("h7e", h7, h7l, h7e);
+registerSquareHandler("h8e", h8, h8l, h8e);
 
-a2e.onclick = () => { sendMove("a2e"); bxevents(a2, a2l, a2e); };
-window.boardHandlers["a2e"] = () => bxevents(a2, a2l, a2e);
-
-a3e.onclick = () => { sendMove("a3e"); bxevents(a3, a3l, a3e); };
-window.boardHandlers["a3e"] = () => bxevents(a3, a3l, a3e);
-
-a4e.onclick = () => { sendMove("a4e"); bxevents(a4, a4l, a4e); };
-window.boardHandlers["a4e"] = () => bxevents(a4, a4l, a4e);
-
-a5e.onclick = () => { sendMove("a5e"); bxevents(a5, a5l, a5e); };
-window.boardHandlers["a5e"] = () => bxevents(a5, a5l, a5e);
-
-a6e.onclick = () => { sendMove("a6e"); bxevents(a6, a6l, a6e); };
-window.boardHandlers["a6e"] = () => bxevents(a6, a6l, a6e);
-
-a7e.onclick = () => { sendMove("a7e"); bxevents(a7, a7l, a7e); };
-window.boardHandlers["a7e"] = () => bxevents(a7, a7l, a7e);
-
-a8e.onclick = () => { sendMove("a8e"); bxevents(a8, a8l, a8e); };
-window.boardHandlers["a8e"] = () => bxevents(a8, a8l, a8e);
-
-
-// Row B
-b1e.onclick = () => { sendMove("b1e"); bxevents(b1, b1l, b1e); };
-window.boardHandlers["b1e"] = () => bxevents(b1, b1l, b1e);
-
-b2e.onclick = () => { sendMove("b2e"); bxevents(b2, b2l, b2e); };
-window.boardHandlers["b2e"] = () => bxevents(b2, b2l, b2e);
-
-b3e.onclick = () => { sendMove("b3e"); bxevents(b3, b3l, b3e); };
-window.boardHandlers["b3e"] = () => bxevents(b3, b3l, b3e);
-
-b4e.onclick = () => { sendMove("b4e"); bxevents(b4, b4l, b4e); };
-window.boardHandlers["b4e"] = () => bxevents(b4, b4l, b4e);
-
-b5e.onclick = () => { sendMove("b5e"); bxevents(b5, b5l, b5e); };
-window.boardHandlers["b5e"] = () => bxevents(b5, b5l, b5e);
-
-b6e.onclick = () => { sendMove("b6e"); bxevents(b6, b6l, b6e); };
-window.boardHandlers["b6e"] = () => bxevents(b6, b6l, b6e);
-
-b7e.onclick = () => { sendMove("b7e"); bxevents(b7, b7l, b7e); };
-window.boardHandlers["b7e"] = () => bxevents(b7, b7l, b7e);
-
-b8e.onclick = () => { sendMove("b8e"); bxevents(b8, b8l, b8e); };
-window.boardHandlers["b8e"] = () => bxevents(b8, b8l, b8e);
-
-
-// Row C
-c1e.onclick = () => { sendMove("c1e"); bxevents(c1, c1l, c1e); };
-window.boardHandlers["c1e"] = () => bxevents(c1, c1l, c1e);
-
-c2e.onclick = () => { sendMove("c2e"); bxevents(c2, c2l, c2e); };
-window.boardHandlers["c2e"] = () => bxevents(c2, c2l, c2e);
-
-c3e.onclick = () => { sendMove("c3e"); bxevents(c3, c3l, c3e); };
-window.boardHandlers["c3e"] = () => bxevents(c3, c3l, c3e);
-
-c4e.onclick = () => { sendMove("c4e"); bxevents(c4, c4l, c4e); };
-window.boardHandlers["c4e"] = () => bxevents(c4, c4l, c4e);
-
-c5e.onclick = () => { sendMove("c5e"); bxevents(c5, c5l, c5e); };
-window.boardHandlers["c5e"] = () => bxevents(c5, c5l, c5e);
-
-c6e.onclick = () => { sendMove("c6e"); bxevents(c6, c6l, c6e); };
-window.boardHandlers["c6e"] = () => bxevents(c6, c6l, c6e);
-
-c7e.onclick = () => { sendMove("c7e"); bxevents(c7, c7l, c7e); };
-window.boardHandlers["c7e"] = () => bxevents(c7, c7l, c7e);
-
-c8e.onclick = () => { sendMove("c8e"); bxevents(c8, c8l, c8e); };
-window.boardHandlers["c8e"] = () => bxevents(c8, c8l, c8e);
-
-
-// Row D
-d1e.onclick = () => { sendMove("d1e"); bxevents(d1, d1l, d1e); };
-window.boardHandlers["d1e"] = () => bxevents(d1, d1l, d1e);
-
-d2e.onclick = () => { sendMove("d2e"); bxevents(d2, d2l, d2e); };
-window.boardHandlers["d2e"] = () => bxevents(d2, d2l, d2e);
-
-d3e.onclick = () => { sendMove("d3e"); bxevents(d3, d3l, d3e); };
-window.boardHandlers["d3e"] = () => bxevents(d3, d3l, d3e);
-
-d4e.onclick = () => { sendMove("d4e"); bxevents(d4, d4l, d4e); };
-window.boardHandlers["d4e"] = () => bxevents(d4, d4l, d4e);
-
-d5e.onclick = () => { sendMove("d5e"); bxevents(d5, d5l, d5e); };
-window.boardHandlers["d5e"] = () => bxevents(d5, d5l, d5e);
-
-d6e.onclick = () => { sendMove("d6e"); bxevents(d6, d6l, d6e); };
-window.boardHandlers["d6e"] = () => bxevents(d6, d6l, d6e);
-
-d7e.onclick = () => { sendMove("d7e"); bxevents(d7, d7l, d7e); };
-window.boardHandlers["d7e"] = () => bxevents(d7, d7l, d7e);
-
-d8e.onclick = () => { sendMove("d8e"); bxevents(d8, d8l, d8e); };
-window.boardHandlers["d8e"] = () => bxevents(d8, d8l, d8e);
-
-
-// Row E
-e1e.onclick = () => { sendMove("e1e"); bxevents(e1, e1l, e1e); };
-window.boardHandlers["e1e"] = () => bxevents(e1, e1l, e1e);
-
-e2e.onclick = () => { sendMove("e2e"); bxevents(e2, e2l, e2e); };
-window.boardHandlers["e2e"] = () => bxevents(e2, e2l, e2e);
-
-e3e.onclick = () => { sendMove("e3e"); bxevents(e3, e3l, e3e); };
-window.boardHandlers["e3e"] = () => bxevents(e3, e3l, e3e);
-
-e4e.onclick = () => { sendMove("e4e"); bxevents(e4, e4l, e4e); };
-window.boardHandlers["e4e"] = () => bxevents(e4, e4l, e4e);
-
-e5e.onclick = () => { sendMove("e5e"); bxevents(e5, e5l, e5e); };
-window.boardHandlers["e5e"] = () => bxevents(e5, e5l, e5e);
-
-e6e.onclick = () => { sendMove("e6e"); bxevents(e6, e6l, e6e); };
-window.boardHandlers["e6e"] = () => bxevents(e6, e6l, e6e);
-
-e7e.onclick = () => { sendMove("e7e"); bxevents(e7, e7l, e7e); };
-window.boardHandlers["e7e"] = () => bxevents(e7, e7l, e7e);
-
-e8e.onclick = () => { sendMove("e8e"); bxevents(e8, e8l, e8e); };
-window.boardHandlers["e8e"] = () => bxevents(e8, e8l, e8e);
-
-
-// Row F
-f1e.onclick = () => { sendMove("f1e"); bxevents(f1, f1l, f1e); };
-window.boardHandlers["f1e"] = () => bxevents(f1, f1l, f1e);
-
-f2e.onclick = () => { sendMove("f2e"); bxevents(f2, f2l, f2e); };
-window.boardHandlers["f2e"] = () => bxevents(f2, f2l, f2e);
-
-f3e.onclick = () => { sendMove("f3e"); bxevents(f3, f3l, f3e); };
-window.boardHandlers["f3e"] = () => bxevents(f3, f3l, f3e);
-
-f4e.onclick = () => { sendMove("f4e"); bxevents(f4, f4l, f4e); };
-window.boardHandlers["f4e"] = () => bxevents(f4, f4l, f4e);
-
-f5e.onclick = () => { sendMove("f5e"); bxevents(f5, f5l, f5e); };
-window.boardHandlers["f5e"] = () => bxevents(f5, f5l, f5e);
-
-f6e.onclick = () => { sendMove("f6e"); bxevents(f6, f6l, f6e); };
-window.boardHandlers["f6e"] = () => bxevents(f6, f6l, f6e);
-
-f7e.onclick = () => { sendMove("f7e"); bxevents(f7, f7l, f7e); };
-window.boardHandlers["f7e"] = () => bxevents(f7, f7l, f7e);
-
-f8e.onclick = () => { sendMove("f8e"); bxevents(f8, f8l, f8e); };
-window.boardHandlers["f8e"] = () => bxevents(f8, f8l, f8e);
-
-
-// Row G
-g1e.onclick = () => { sendMove("g1e"); bxevents(g1, g1l, g1e); };
-window.boardHandlers["g1e"] = () => bxevents(g1, g1l, g1e);
-
-g2e.onclick = () => { sendMove("g2e"); bxevents(g2, g2l, g2e); };
-window.boardHandlers["g2e"] = () => bxevents(g2, g2l, g2e);
-
-g3e.onclick = () => { sendMove("g3e"); bxevents(g3, g3l, g3e); };
-window.boardHandlers["g3e"] = () => bxevents(g3, g3l, g3e);
-
-g4e.onclick = () => { sendMove("g4e"); bxevents(g4, g4l, g4e); };
-window.boardHandlers["g4e"] = () => bxevents(g4, g4l, g4e);
-
-g5e.onclick = () => { sendMove("g5e"); bxevents(g5, g5l, g5e); };
-window.boardHandlers["g5e"] = () => bxevents(g5, g5l, g5e);
-
-g6e.onclick = () => { sendMove("g6e"); bxevents(g6, g6l, g6e); };
-window.boardHandlers["g6e"] = () => bxevents(g6, g6l, g6e);
-
-g7e.onclick = () => { sendMove("g7e"); bxevents(g7, g7l, g7e); };
-window.boardHandlers["g7e"] = () => bxevents(g7, g7l, g7e);
-
-g8e.onclick = () => { sendMove("g8e"); bxevents(g8, g8l, g8e); };
-window.boardHandlers["g8e"] = () => bxevents(g8, g8l, g8e);
-
-
-// Row H
-h1e.onclick = () => { sendMove("h1e"); bxevents(h1, h1l, h1e); };
-window.boardHandlers["h1e"] = () => bxevents(h1, h1l, h1e);
-
-h2e.onclick = () => { sendMove("h2e"); bxevents(h2, h2l, h2e); };
-window.boardHandlers["h2e"] = () => bxevents(h2, h2l, h2e);
-
-h3e.onclick = () => { sendMove("h3e"); bxevents(h3, h3l, h3e); };
-window.boardHandlers["h3e"] = () => bxevents(h3, h3l, h3e);
-
-h4e.onclick = () => { sendMove("h4e"); bxevents(h4, h4l, h4e); };
-window.boardHandlers["h4e"] = () => bxevents(h4, h4l, h4e);
-
-h5e.onclick = () => { sendMove("h5e"); bxevents(h5, h5l, h5e); };
-window.boardHandlers["h5e"] = () => bxevents(h5, h5l, h5e);
-
-h6e.onclick = () => { sendMove("h6e"); bxevents(h6, h6l, h6e); };
-window.boardHandlers["h6e"] = () => bxevents(h6, h6l, h6e);
-
-h7e.onclick = () => { sendMove("h7e"); bxevents(h7, h7l, h7e); };
-window.boardHandlers["h7e"] = () => bxevents(h7, h7l, h7e);
-
-h8e.onclick = () => { sendMove("h8e"); bxevents(h8, h8l, h8e); };
-window.boardHandlers["h8e"] = () => bxevents(h8, h8l, h8e);

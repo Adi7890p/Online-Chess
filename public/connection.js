@@ -12,7 +12,7 @@ function connect(room) {
   socket.onopen = () => {
     socket.send(JSON.stringify({ type: 'join', roomCode: room }));
   };
-}
+
 socket.onmessage = (e) => {
   const data = JSON.parse(e.data);
   if (data.type === 'start' && user=='host') {
@@ -31,7 +31,7 @@ socket.onmessage = (e) => {
     }
   }
 };
-
+}
  
 
 

@@ -34,6 +34,7 @@ function connect(room) {
 function sendMove(squareId) {
   socket.send(JSON.stringify({ type: "move", roomCode, square: squareId }));
 }
+window.sendMove = sendMove;
 
 document.getElementById('hostBtn').onclick = () => {
   user='host';

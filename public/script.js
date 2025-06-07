@@ -5266,87 +5266,50 @@ async function bxevents(idx, ls, eve) {
     bypass = false;
     pinning();
     checkmate();
-
-}window.boardHandlers = {};
-
-function registerSquareHandler(id, piece, label, button) {
-  button.onclick = () => {
-    if (typeof sendMove === 'function') sendMove(id);
-    bxevents(piece, label, button);
-  };
-  window.boardHandlers[id] = () => bxevents(piece, label, button);
 }
 
-// Example for rows A–H, columns 1–8
-registerSquareHandler("a1e", a1, a1l, a1e);
-registerSquareHandler("a2e", a2, a2l, a2e);
-registerSquareHandler("a3e", a3, a3l, a3e);
-registerSquareHandler("a4e", a4, a4l, a4e);
-registerSquareHandler("a5e", a5, a5l, a5e);
-registerSquareHandler("a6e", a6, a6l, a6e);
-registerSquareHandler("a7e", a7, a7l, a7e);
-registerSquareHandler("a8e", a8, a8l, a8e);
 
-registerSquareHandler("b1e", b1, b1l, b1e);
-registerSquareHandler("b2e", b2, b2l, b2e);
-registerSquareHandler("b3e", b3, b3l, b3e);
-registerSquareHandler("b4e", b4, b4l, b4e);
-registerSquareHandler("b5e", b5, b5l, b5e);
-registerSquareHandler("b6e", b6, b6l, b6e);
-registerSquareHandler("b7e", b7, b7l, b7e);
-registerSquareHandler("b8e", b8, b8l, b8e);
 
-registerSquareHandler("c1e", c1, c1l, c1e);
-registerSquareHandler("c2e", c2, c2l, c2e);
-registerSquareHandler("c3e", c3, c3l, c3e);
-registerSquareHandler("c4e", c4, c4l, c4e);
-registerSquareHandler("c5e", c5, c5l, c5e);
-registerSquareHandler("c6e", c6, c6l, c6e);
-registerSquareHandler("c7e", c7, c7l, c7e);
-registerSquareHandler("c8e", c8, c8l, c8e);
 
-registerSquareHandler("d1e", d1, d1l, d1e);
-registerSquareHandler("d2e", d2, d2l, d2e);
-registerSquareHandler("d3e", d3, d3l, d3e);
-registerSquareHandler("d4e", d4, d4l, d4e);
-registerSquareHandler("d5e", d5, d5l, d5e);
-registerSquareHandler("d6e", d6, d6l, d6e);
-registerSquareHandler("d7e", d7, d7l, d7e);
-registerSquareHandler("d8e", d8, d8l, d8e);
+window.boardHandlers = {};
 
-registerSquareHandler("e1e", e1, e1l, e1e);
-registerSquareHandler("e2e", e2, e2l, e2e);
-registerSquareHandler("e3e", e3, e3l, e3e);
-registerSquareHandler("e4e", e4, e4l, e4e);
-registerSquareHandler("e5e", e5, e5l, e5e);
-registerSquareHandler("e6e", e6, e6l, e6e);
-registerSquareHandler("e7e", e7, e7l, e7e);
-registerSquareHandler("e8e", e8, e8l, e8e);
+function isSocketReady() {
+  return window.sendMove && typeof window.sendMove === "function";
+}
 
-registerSquareHandler("f1e", f1, f1l, f1e);
-registerSquareHandler("f2e", f2, f2l, f2e);
-registerSquareHandler("f3e", f3, f3l, f3e);
-registerSquareHandler("f4e", f4, f4l, f4e);
-registerSquareHandler("f5e", f5, f5l, f5e);
-registerSquareHandler("f6e", f6, f6l, f6e);
-registerSquareHandler("f7e", f7, f7l, f7e);
-registerSquareHandler("f8e", f8, f8l, f8e);
+// Wait until socket is connected before assigning click handlers
+function setupBoardHandlersWhenReady() {
+  if (!isSocketReady()) {
+    setTimeout(setupBoardHandlersWhenReady, 100); // retry after 100ms
+    return;
+  }
 
-registerSquareHandler("g1e", g1, g1l, g1e);
-registerSquareHandler("g2e", g2, g2l, g2e);
-registerSquareHandler("g3e", g3, g3l, g3e);
-registerSquareHandler("g4e", g4, g4l, g4e);
-registerSquareHandler("g5e", g5, g5l, g5e);
-registerSquareHandler("g6e", g6, g6l, g6e);
-registerSquareHandler("g7e", g7, g7l, g7e);
-registerSquareHandler("g8e", g8, g8l, g8e);
+  const letters = ['a','b','c','d','e','f','g','h'];
+  const numbers = ['1','2','3','4','5','6','7','8'];
 
-registerSquareHandler("h1e", h1, h1l, h1e);
-registerSquareHandler("h2e", h2, h2l, h2e);
-registerSquareHandler("h3e", h3, h3l, h3e);
-registerSquareHandler("h4e", h4, h4l, h4e);
-registerSquareHandler("h5e", h5, h5l, h5e);
-registerSquareHandler("h6e", h6, h6l, h6e);
-registerSquareHandler("h7e", h7, h7l, h7e);
-registerSquareHandler("h8e", h8, h8l, h8e);
+  letters.forEach(row => {
+    numbers.forEach(col => {
+      const id = row + col;
+      const cell = document.getElementById(id);
+      if (cell) {
+        const cellE = document.getElementById(id + 'e');
+        const cellL = document.getElementById(id + 'l');
+
+        const handler = () => {
+          window.sendMove(id + 'e');
+          bxevents(cell, cellL, cellE);
+        };
+
+        if (cellE) {
+          cellE.onclick = handler;
+          window.boardHandlers[id + 'e'] = () => bxevents(cell, cellL, cellE);
+        }
+      }
+    });
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  setupBoardHandlersWhenReady();
+});
 

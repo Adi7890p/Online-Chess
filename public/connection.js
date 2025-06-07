@@ -3,6 +3,7 @@ function randomCode() {
 }
 
 let socket;
+let user;
 let roomCode;
 
 function connect(room) {
@@ -14,7 +15,14 @@ function connect(room) {
 
   socket.onmessage = (e) => {
     const data = JSON.parse(e.data);
-    
+    if (data.type === 'start' && user=='host') {
+      localStorage.setItem('roomCode', room);
+      window.location.href = 'p2.html';
+    }
+    if (data.type === 'start' && user=='join') {
+      localStorage.setItem('roomCode', room);
+      window.location.href = 'p1.html';
+    }
     if (data.type === "move") {
     const square = data.square;
     if (window.boardHandlers[square]) {
@@ -28,21 +36,17 @@ function sendMove(squareId) {
 }
 
 document.getElementById('hostBtn').onclick = () => {
+  user='host';
   roomCode = randomCode();
   document.getElementById('roomDisplay').innerText = `Room Code: ${roomCode}`;
   connect(roomCode);
-  if (data.type === 'start') {
-      localStorage.setItem('roomCode', room);
-      window.location.href = 'p1.html';
-    }
+
 };
 
 
 document.getElementById('joinBtn').onclick = () => {
+  user='join';
   roomCode = document.getElementById('roomInput').value.trim().toUpperCase();
   connect(roomCode);
-  if (data.type === 'start') {
-      localStorage.setItem('roomCode', room);
-      window.location.href = 'p2.html';
-    }
+  
 };

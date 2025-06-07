@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <h1>CHESS</h1>
+    <table>
+
+        <tr id="r1" class="r1 oddr">
+            <th id="a1" class="a 1 odd"></th>
+            <th id="a2" class="a 2 even"></th>
+            <th id="a3" class="a 3 odd"></th>
+            <th id="a4" class="a 4 even"></th>
+            <th id="a5" class="a 5 odd"></th>
+            <th id="a6" class="a 6 even"></th>
+            <th id="a7" class="a 7 odd"></th>
+            <th id="a8" class="a 8 even"></th>
+        </tr>
+        <tr id="r2" class="r2 evenr">
+            <th id="b1" class="b 1 even"></th>
+            <th id="b2" class="b 2 odd"></th>
+            <th id="b3" class="b 3 even"></th>
+            <th id="b4" class="b 4 odd"></th>
+            <th id="b5" class="b 5 even"></th>
+            <th id="b6" class="b 6 odd"></th>
+            <th id="b7" class="b 7 even"></th>
+            <th id="b8" class="b 8 odd"></th>
+        </tr>
+        <tr id="r3" class="r3 oddr">
+            <th id="c1" class="c 1 odd"></th>
+            <th id="c2" class="c 2 even"></th>
+            <th id="c3" class="c 3 odd"></th>
+            <th id="c4" class="c 4 even"></th>
+            <th id="c5" class="c 5 odd"></th>
+            <th id="c6" class="c 6 even"></th>
+            <th id="c7" class="c 7 odd"></th>
+            <th id="c8" class="c 8 even"></th>
+        </tr>
+        <tr id="r4" class="r4 evenr">
+            <th id="d1" class="d 1 even"></th>
+            <th id="d2" class="d 2 odd"></th>
+            <th id="d3" class="d 3 even"></th>
+            <th id="d4" class="d 4 odd"></th>
+            <th id="d5" class="d 5 even"></th>
+            <th id="d6" class="d 6 odd"></th>
+            <th id="d7" class="d 7 even"></th>
+            <th id="d8" class="d 8 odd"></th>
+        </tr>
+        <tr id="r5" class="r5 oddr">
+            <th id="e1" class="e 1 odd"></th>
+            <th id="e2" class="e 2 even"></th>
+            <th id="e3" class="e 3 odd"></th>
+            <th id="e4" class="e 4 even"></th>
+            <th id="e5" class="e 5 odd"></th>
+            <th id="e6" class="e 6 even"></th>
+            <th id="e7" class="e 7 odd"></th>
+            <th id="e8" class="e 8 even"></th>
+        </tr>
+        <tr id="r6" class="r6 evenr">
+            <th id="f1" class="f 1 even"></th>
+            <th id="f2" class="f 2 odd"></th>
+            <th id="f3" class="f 3 even"></th>
+            <th id="f4" class="f 4 odd"></th>
+            <th id="f5" class="f 5 even"></th>
+            <th id="f6" class="f 6 odd"></th>
+            <th id="f7" class="f 7 even"></th>
+            <th id="f8" class="f 8 odd"></th>
+        </tr>
+        <tr id="r7" class="r7 oddr">
+            <th id="g1" class="g 1 odd"></th>
+            <th id="g2" class="g 2 even"></th>
+            <th id="g3" class="g 3 odd"></th>
+            <th id="g4" class="g 4 even"></th>
+            <th id="g5" class="g 5 odd"></th>
+            <th id="g6" class="g 6 even"></th>
+            <th id="g7" class="g 7 odd"></th>
+            <th id="g8" class="g 8 even"></th>
+        </tr>
+        <tr id="r8" class="r8 evenr">
+            <th id="h1" class="h 1 even"></th>
+            <th id="h2" class="h 2 odd"></th>
+            <th id="h3" class="h 3 even"></th>
+            <th id="h4" class="h 4 odd"></th>
+            <th id="h5" class="h 5 even"></th>
+            <th id="h6" class="h 6 odd"></th>
+            <th id="h7" class="h 7 even"></th>
+            <th id="h8" class="h 8 odd"></th>
+        </tr>
+
+    </table>
+    <div id="col">
+        <div class="col" id="wh"></div>
+        <div class="col" id="bl"></div>
+    </div>
+    <div id="prevent" class="hidden"></div>
+    <div id="promotion-box" class="hidden">
+        <div class="promo-option" data-piece="q"><i class="fas fa-chess-queen"></i></div>
+        <div class="promo-option" data-piece="r"><i class="fas fa-chess-rook"></i></div>
+        <div class="promo-option" data-piece="b"><i class="fas fa-chess-bishop"></i></div>
+        <div class="promo-option" data-piece="k"><i class="fas fa-chess-knight"></i></div>
+    </div>
+    <div class = 'hidden' id = 'dump'></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

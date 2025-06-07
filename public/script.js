@@ -5277,39 +5277,37 @@ function isSocketReady() {
   return window.sendMove && typeof window.sendMove === "function";
 }
 
-// Wait until socket is connected before assigning click handlers
-function setupBoardHandlersWhenReady() {
-  if (!isSocketReady()) {
-    setTimeout(setupBoardHandlersWhenReady, 100); // retry after 100ms
-    return;
-  }
+window.boardHandlers = {};
 
+function setupBoardHandlers() {
   const letters = ['a','b','c','d','e','f','g','h'];
   const numbers = ['1','2','3','4','5','6','7','8'];
 
-  letters.forEach(row => {
-    numbers.forEach(col => {
-      const id = row + col;
-      const cell = document.getElementById(id);
-      if (cell) {
-        const cellE = document.getElementById(id + 'e');
-        const cellL = document.getElementById(id + 'l');
+  for (const l of letters) {
+    for (const n of numbers) {
+      const square = l + n;
+      const cell = document.getElementById(square);
+      const cellL = document.getElementById(square + 'l');
+      const cellE = document.getElementById(square + 'e');
 
-        const handler = () => {
-          window.sendMove(id + 'e');
-          bxevents(cell, cellL, cellE);
-        };
+      if (!cell || !cellE) continue;
 
-        if (cellE) {
-          cellE.onclick = handler;
-          window.boardHandlers[id + 'e'] = () => bxevents(cell, cellL, cellE);
+      const handler = () => {
+        if (typeof sendMove === 'function') {
+          sendMove(square + 'e');
         }
-      }
-    });
-  });
+        bxevents(cell, cellL, cellE); // Your custom click effect
+      };
+
+      // Attach click
+      cellE.onclick = handler;
+
+      // Register for remote click
+      window.boardHandlers[square + 'e'] = handler;
+    }
+  }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  setupBoardHandlersWhenReady();
-});
+document.addEventListener("DOMContentLoaded", setupBoardHandlers);
+
 

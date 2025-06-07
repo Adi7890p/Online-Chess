@@ -12,25 +12,26 @@ function connect(room) {
   socket.onopen = () => {
     socket.send(JSON.stringify({ type: 'join', roomCode: room }));
   };
-
-  socket.onmessage = (e) => {
-    const data = JSON.parse(e.data);
-    if (data.type === 'start' && user=='host') {
+socket.onmessage = (e) => {
+  const data = JSON.parse(e.data);
+  if (data.type === 'start' && user=='host') {
       localStorage.setItem('roomCode', room);
       window.location.href = 'p1.html';
     }
-    if (data.type === 'start' && user=='join') {
+  if (data.type === 'start' && user=='join') {
       localStorage.setItem('roomCode', room);
       window.location.href = 'p2.html';
     }
-    if (data.type === "move") {
-    const square = data.square;
-    if (window.boardHandlers[square]) {
-      window.boardHandlers[square]();  // trigger same move
+  if (data.type === "move") {
+    const buttonId = data.square;
+    const btn = document.getElementById(buttonId);
+    if (btn) {
+      btn.click(); // simulate click on receiver side
     }
   }
-  };
-}
+};
+
+ 
 
 
 document.getElementById('hostBtn').onclick = () => {

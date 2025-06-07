@@ -17,11 +17,11 @@ function connect(room) {
     const data = JSON.parse(e.data);
     if (data.type === 'start' && user=='host') {
       localStorage.setItem('roomCode', room);
-      window.location.href = 'p2.html';
+      window.location.href = 'p1.html';
     }
     if (data.type === 'start' && user=='join') {
       localStorage.setItem('roomCode', room);
-      window.location.href = 'p1.html';
+      window.location.href = 'p2.html';
     }
     if (data.type === "move") {
     const square = data.square;
@@ -50,6 +50,10 @@ document.getElementById('joinBtn').onclick = () => {
 };
 
 function sendMove(squareId) {
-  socket.send(JSON.stringify({ type: "move", roomCode, square: squareId }));
+  if (socket && socket.readyState === WebSocket.OPEN) {
+    socket.send(JSON.stringify({ type: "move", roomCode, square: squareId }));
+  } else {
+    console.warn("WebSocket not ready. Move not sent:", squareId);
+  }
 }
 window.sendMove = sendMove;
